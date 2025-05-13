@@ -79,6 +79,11 @@ test:
 #
 production:
   <<: *default
-  database: backend_production
-  username: backend
-  password: <%= ENV["BACKEND_DATABASE_PASSWORD"] %>
+  url: <%= ENV["DATABASE_URL"] %>
+  username: <%= ENV["DB_USER"] %>
+  password: <%= ENV["DB_USER"] %>
+  host: <%= ENV["DB_HOST"] %>
+  # <<: *default
+  # database: backend_production
+  # username: backend
+  # password: <%= ENV["BACKEND_DATABASE_PASSWORD"] %>
