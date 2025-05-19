@@ -1,0 +1,75 @@
+.fullPage {
+  background: white;
+  margin: 2rem;
+  padding: 2rem 2.5rem;
+  border-radius: 15px;
+  max-width: 80vh;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+
+.form {
+  padding: 1rem;
+  border: solid 2px;
+  border-color: #dbd9ce;
+  border-radius: 15px;
+  max-width: 75vh;
+}
+
+.inputBlock {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  margin-bottom: 1.5rem;
+  padding-bottom: 1.5rem;
+  border-bottom: solid;
+  border-color: #dbd9ce;
+}
+
+form .inputBlock:last-of-type {
+  border-bottom: none;
+  margin-bottom: 0px;
+  padding: 0px;
+}
+
+.inputBlock h2 {
+  font-size: 18px;
+  font-weight: 600;
+  white-space: nowrap;
+  margin-right: 20px;
+}
+
+.inputBlock p {
+  color: #949287;
+  font-size: 14px;
+  white-space: nowrap;
+  margin-right: 20px;
+}
+
+.inputField {
+  padding: 5px 15px 5px 15px;
+  border-radius: 10px;
+  border: solid;
+  border-color: #dedcd5;
+  width: 100%;
+  max-width: 500px;
+  min-width: 250px;
+}
+
+.inputField:focus {
+  border: solid;
+  border-color: #828f25;
+  outline: none;
+}
+
+.errors {
+  color: #eb7536;
+  font-style: italic;
+  font-weight: 500;
+  font-size: 14px;
+  padding-top: 10px;
+}
