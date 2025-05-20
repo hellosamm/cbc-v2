@@ -1,0 +1,60 @@
+.fullPage {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+}
+
+.image {
+  width: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.rightColumn {
+  margin: 5rem;
+}
+
+.header {
+  margin-bottom: 1.5rem;
+}
+
+.inputBlock {
+  margin-bottom: 1.5rem;
+}
+
+.inputField {
+  padding: 5px 15px 5px 15px;
+  border-radius: 30px;
+  width: 100%;
+  max-width: 500px;
+  min-width: 250px;
+}
+
+.error {
+  font-size: 14px;
+  margin-left: 10px;
+  margin-top: 5px;
+}
+
+.button {
+  width: 100%;
+  max-width: 500px;
+  min-width: 250px;
+  margin-bottom: 1.5rem;
+}
+
+.alternativeAuthentication {
+  display: flex;
+}
+
+.alternativeAuthentication p {
+  margin-right: 5px;
+}
+
+.alternativeAuthentication a {
+  font-weight: 600;
+}
+
+.alternativeAuthentication a:hover {
+  font-weight: 600;
+  color: #828f25;
+}

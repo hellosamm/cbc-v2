@@ -1,0 +1,95 @@
+.viewEvent {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.fullPage {
+  margin: 2rem 2.5rem;
+  width: 100%;
+  max-width: 1400px;
+}
+
+.backButton {
+  margin-bottom: 2rem;
+}
+
+.backButton:hover {
+  color: #828f25;
+  font-weight: 600;
+}
+
+.fullPage a:hover {
+  color: #828f25;
+  font-weight: 600;
+}
+
+.eventCard {
+  background: white;
+  padding: 2rem 2.5rem;
+  border-radius: 0px 0px 15px 15px;
+}
+
+.image {
+  background-color: lightgrey;
+  border-radius: 15px 15px 0px 0px;
+  width: 100%;
+  height: 20rem;
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  white-space: nowrap;
+}
+
+.header h1 {
+  margin-right: 50px;
+}
+
+.header a {
+  margin-right: 1rem;
+  border-radius: 30px;
+}
+
+.header a:hover {
+  color: #828f25;
+  font-weight: 600;
+}
+
+.errors {
+  color: #eb7536;
+  font-weight: 500;
+  font-size: 14px;
+  padding-top: 10px;
+}
+
+.allEventDetails {
+  display: flex;
+  align-items: start;
+  justify-content: space-between;
+  margin-right: 100px;
+}
+
+.allEventDetails h2 {
+  font-weight: 700;
+  font-size: 20px;
+}
+
+.singleDetail {
+  margin-bottom: 2rem;
+  white-space: nowrap;
+}
+
+.sideBySide {
+  display: flex;
+  align-items: center;
+}
+
+.sideBySide h2 {
+  margin-right: 10px;
+}
+
+.attendingCard p {
+  white-space: nowrap;
+}
