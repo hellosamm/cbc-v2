@@ -146,7 +146,7 @@ const AllEvents = () => {
       <div className={styles.pastEvents}>
         <h1>past events</h1>
         <img
-          src="/public/down-arrow.png"
+          src="/down-arrow.png"
           alt="Dropdown Icon"
           className="w-10 h-10"
           onClick={displayPastEvents}
