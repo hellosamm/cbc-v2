@@ -30,7 +30,7 @@ class Api::V1::EventsController < ApplicationController
   def show
     # show a single event
     if @event
-      render json: {message: "event found", data: @event}
+      render json: {message: "event found", data: @event, cover_photo_url: @event.cover_photo.attached? ? rails_blob_url(@event.cover_photo) : nil}
     else
       render json: {message: "event not found", data: @event.errors }
     end
