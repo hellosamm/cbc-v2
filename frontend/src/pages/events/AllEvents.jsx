@@ -25,7 +25,7 @@ const AllEvents = () => {
       const upcomingEvents = [];
       const pastEvents = [];
 
-      result.forEach((event) => {
+      result.data.forEach((event) => {
         const formattedEvent = {
           ...event,
           formattedTime: formatDateTime(event.start_time, event.end_time),

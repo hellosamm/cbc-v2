@@ -39,7 +39,7 @@
 
 .realImage {
   border-radius: 15px 15px 0px 0px;
-  width: 50rem;
+  width: 100%;
   max-height: 20rem;
   object-fit: cover;
 }

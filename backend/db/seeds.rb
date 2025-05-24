@@ -47,3 +47,22 @@ events[0].cover_photo.attach(
   filename: "more-is-more.png",
   content_type: "image/png"
 )
+
+events[1].cover_photo.attach(
+  io: File.open(Rails.root.join("db/images/italian_islands.jpg")),
+  filename: "italian_islands.jpg",
+  content_type: "image/jpg"
+)
+
+events[2].cover_photo.attach(
+  io: File.open(Rails.root.join("db/images/picnic.jpg")),
+  filename: "picnic.jpg",
+  content_type: "image/jpg"
+)
+
+events[3].cover_photo.attach(
+  io: File.open(Rails.root.join("db/images/on_the_curry_trail.jpg")),
+  filename: "on_the_curry_trail.jpg",
+  content_type: "image/jpg"
+)
+events.each(&:reload)

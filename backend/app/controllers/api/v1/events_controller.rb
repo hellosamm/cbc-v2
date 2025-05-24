@@ -7,7 +7,13 @@ class Api::V1::EventsController < ApplicationController
   def index
     # show all events
     @events = Event.all
-    render json: @events
+
+    events_with_cover_photo = @events.map do |event|
+      event_attributes = event.attributes
+      event_attributes[:cover_photo_url] = event.cover_photo.attached? ? rails_blob_url(event.cover_photo) : nil
+      event_attributes
+    end
+    render json: {data: events_with_cover_photo}
   end
 
   # POST api/v1/events
