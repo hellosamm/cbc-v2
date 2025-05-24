@@ -37,6 +37,13 @@
   height: 20rem;
 }
 
+.realImage {
+  border-radius: 15px 15px 0px 0px;
+  width: 50rem;
+  max-height: 20rem;
+  object-fit: cover;
+}
+
 .header {
   display: flex;
   align-items: center;

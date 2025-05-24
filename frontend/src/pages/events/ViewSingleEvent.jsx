@@ -17,6 +17,7 @@ const ViewSingleEvent = () => {
   const navigate = useNavigate();
   const { currentUserData, authToken } = useAuth();
   const [event, setEvent] = useState([]);
+  const [coverPhotoUrl, setCoverPhotoUrl] = useState("");
   const [message, setMessage] = useState("");
   const [successMessage, setSuccessMessage] = useState("");
   // const [isAttending, setIsAttending] = useState(false);
@@ -77,6 +78,7 @@ const ViewSingleEvent = () => {
     // console.log(result);
     setEvent(result.data);
     setMessage(result.message);
+    setCoverPhotoUrl(result.cover_photo_url);
   };
 
   const fetchRSVPStatus = async () => {
@@ -159,7 +161,15 @@ const ViewSingleEvent = () => {
         <button className={styles.backButton} onClick={() => navigate(-1)}>
           back
         </button>
-        <div className={styles.image}></div>
+        {coverPhotoUrl ? (
+          <img
+            src={coverPhotoUrl}
+            alt={`${event.title} Cover`}
+            className={styles.realImage}
+          />
+        ) : (
+          <div className={styles.image}></div>
+        )}
         <div className={styles.eventCard}>
           <div className={styles.header}>
             <h1>{event.title}</h1>
