@@ -15,7 +15,6 @@ const AllEvents = () => {
   const [attendees, setAttendees] = useState({});
   const [showPastEvents, setShowPastEvents] = useState(false);
   const [coverPhotoUrl, setCoverPhotoUrl] = useState("");
-  // const s3BaseUrl = import.meta.env.VITE_S3_BASE_URL || "";
 
   useEffect(() => {
     const fetchAllEvents = async () => {
@@ -77,6 +76,14 @@ const AllEvents = () => {
 
     fetchAllEvents();
   }, [authToken]);
+
+  const handleCreateEvent = () => {
+    if (currentUser) {
+      Navigate("/createEvent");
+    } else {
+      Navigate("/login");
+    }
+  };
 
   const allEvents = upcomingEventsList.map((event) => {
     return (
@@ -148,9 +155,15 @@ const AllEvents = () => {
       <div className={styles.header}>
         <h1>upcoming events</h1>
         <div>
-          <Link to="/createEvent" id="button-2">
-            create an event
-          </Link>
+          {authToken ? (
+            <Link to="/createEvent" id="button-2">
+              create an event
+            </Link>
+          ) : (
+            <Link to="/login" id="button-2">
+              create an event
+            </Link>
+          )}
         </div>
       </div>
 
