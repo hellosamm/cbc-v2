@@ -15,7 +15,7 @@ const AllEvents = () => {
   const [attendees, setAttendees] = useState({});
   const [showPastEvents, setShowPastEvents] = useState(false);
   const [coverPhotoUrl, setCoverPhotoUrl] = useState("");
-  const s3BaseUrl = import.meta.env.VITE_S3_BASE_URL || "";
+  // const s3BaseUrl = import.meta.env.VITE_S3_BASE_URL || "";
 
   useEffect(() => {
     const fetchAllEvents = async () => {
@@ -78,15 +78,11 @@ const AllEvents = () => {
     fetchAllEvents();
   }, [authToken]);
 
-  const getImageUrl = (coverPhotoUrl) => {
-    if (import.meta.env.PROD && !coverPhotoUrl.startsWith("http")) {
-      return `${s3BaseUrl}/image/${coverPhotoUrl}`;
-    }
-  };
-
   const allEvents = upcomingEventsList.map((event) => {
     // const imageUrl = getImageUrl(event.cover_photo_url);
     // console.log(event.cover_photo_url);
+    console.log(event.cover_photo_url);
+    console.log(cover_photo_url);
 
     return (
       <div className={styles.eventCard} id={event.id} key={event.id}>
@@ -94,7 +90,7 @@ const AllEvents = () => {
           {/* <div className={styles.imageContainer}></div> */}
           {event.cover_photo_url ? (
             <img
-              src={getImageUrl(event.cover_photo_url)}
+              src={event.cover_photo_url}
               alt={`${event.title} Cover`}
               className={styles.imageContainer}
             />
