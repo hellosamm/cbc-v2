@@ -51,3 +51,4 @@ gem 'rack-cors'
 
 # For AWS S3 integration
 gem 'aws-sdk-s3', '~> 1.100'
+gem 'dotenv-rails', groups: [:development, :test]
