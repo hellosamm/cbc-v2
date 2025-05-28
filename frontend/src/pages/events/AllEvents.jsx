@@ -20,7 +20,7 @@ const AllEvents = () => {
   useEffect(() => {
     const fetchAllEvents = async () => {
       const result = await viewAllEventsApi();
-      console.log(result);
+      // console.log(result);
 
       const today = new Date();
       today.setHours(0, 0, 0, 0);
