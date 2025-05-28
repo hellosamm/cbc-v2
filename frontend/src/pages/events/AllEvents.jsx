@@ -79,10 +79,6 @@ const AllEvents = () => {
   }, [authToken]);
 
   const allEvents = upcomingEventsList.map((event) => {
-    // const imageUrl = getImageUrl(event.cover_photo_url);
-    // console.log(event.cover_photo_url);
-    console.log(event.cover_photo_url);
-
     return (
       <div className={styles.eventCard} id={event.id} key={event.id}>
         <Link to={`/${event.title.replace(/\s+/g, "-")}/event/${event.id}`}>
