@@ -43,7 +43,7 @@ export const viewAllEventsApi = async () => {
     if (response.ok) {
       const result = await response.json();
 
-      return [result];
+      return result;
     }
   } catch (error) {
     console.error("network errror: ", error);

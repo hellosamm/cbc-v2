@@ -10,10 +10,25 @@ class Api::V1::EventsController < ApplicationController
 
     events_with_cover_photo = @events.map do |event|
       event_attributes = event.attributes
-      event_attributes[:cover_photo_url] = event.cover_photo.attached? ? rails_blob_url(event.cover_photo) : nil
+    #   event_attributes[:cover_photo_url] = event.cover_photo.attached? ? rails_blob_url(event.cover_photo) : nil
+    #   event_attributes
+    # end
+    # render json: {data: events_with_cover_photo}
+    
+      cover_photo_url = if event.cover_photo.attached?
+        if Rails.env.production?
+          filename = event.cover_photo.filename.to_s
+          "#{ENV.fetch("S3_BASE_URL")}/images/#{filename}"
+        else
+          rails_blob_url(event.cover_photo)
+        end
+      end
+
+      event_attributes[:cover_photo_url] = cover_photo_url
       event_attributes
     end
-    render json: {data: events_with_cover_photo}
+
+    render json: { data: events_with_cover_photo }
   end
 
   # POST api/v1/events

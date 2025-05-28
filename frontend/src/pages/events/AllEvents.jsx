@@ -15,10 +15,12 @@ const AllEvents = () => {
   const [attendees, setAttendees] = useState({});
   const [showPastEvents, setShowPastEvents] = useState(false);
   const [coverPhotoUrl, setCoverPhotoUrl] = useState("");
+  const s3BaseUrl = import.meta.env.VITE_S3_BASE_URL || "";
 
   useEffect(() => {
     const fetchAllEvents = async () => {
-      const [result] = await viewAllEventsApi();
+      const result = await viewAllEventsApi();
+      console.log(result);
 
       const today = new Date();
       today.setHours(0, 0, 0, 0);
@@ -27,6 +29,7 @@ const AllEvents = () => {
       const pastEvents = [];
 
       result.data.forEach((event) => {
+        // console.log(event.cover_photo_url);
         const formattedEvent = {
           ...event,
           formattedTime: formatDateTime(event.start_time, event.end_time),
@@ -75,36 +78,47 @@ const AllEvents = () => {
     fetchAllEvents();
   }, [authToken]);
 
-  const allEvents = upcomingEventsList.map((event) => (
-    <div className={styles.eventCard} id={event.id} key={event.id}>
-      <Link to={`/${event.title.replace(/\s+/g, "-")}/event/${event.id}`}>
-        {/* <div className={styles.imageContainer}></div> */}
-        {event.cover_photo_url ? (
-          <img
-            src={event.cover_photo_url}
-            alt={`${event.title} Cover`}
-            className={styles.imageContainer}
-          />
-        ) : (
-          <div className={styles.imageContainer}></div>
-        )}
-        <div className={styles.individualEvent}>
-          <div>
-            <p className={styles.title}>{event.title}</p>
+  const getImageUrl = (coverPhotoUrl) => {
+    if (import.meta.env.PROD && !coverPhotoUrl.startsWith("http")) {
+      return `${s3BaseUrl}/image/${coverPhotoUrl}`;
+    }
+  };
+
+  const allEvents = upcomingEventsList.map((event) => {
+    // const imageUrl = getImageUrl(event.cover_photo_url);
+    // console.log(event.cover_photo_url);
+
+    return (
+      <div className={styles.eventCard} id={event.id} key={event.id}>
+        <Link to={`/${event.title.replace(/\s+/g, "-")}/event/${event.id}`}>
+          {/* <div className={styles.imageContainer}></div> */}
+          {event.cover_photo_url ? (
+            <img
+              src={getImageUrl(event.cover_photo_url)}
+              alt={`${event.title} Cover`}
+              className={styles.imageContainer}
+            />
+          ) : (
+            <div className={styles.imageContainer}></div>
+          )}
+          <div className={styles.individualEvent}>
+            <div>
+              <p className={styles.title}>{event.title}</p>
+            </div>
+            <div className={styles.dateTime}>
+              {/* <p>thursday, month 9th | 4:30 pm</p> */}
+              <p>
+                {event.formattedTime.formattedDate} |{" "}
+                {event.formattedTime.formattedStartTime}
+              </p>
+            </div>
+            <p>{event.location}</p>
+            <p className={styles.attending}>{attendees[event.id]} attending</p>
           </div>
-          <div className={styles.dateTime}>
-            {/* <p>thursday, month 9th | 4:30 pm</p> */}
-            <p>
-              {event.formattedTime.formattedDate} |{" "}
-              {event.formattedTime.formattedStartTime}
-            </p>
-          </div>
-          <p>{event.location}</p>
-          <p className={styles.attending}>{attendees[event.id]} attending</p>
-        </div>
-      </Link>
-    </div>
-  ));
+        </Link>
+      </div>
+    );
+  });
 
   const pastEvents = pastEventsList.map((event) => (
     <div className={styles.eventCard} id={event.id} key={event.id}>
