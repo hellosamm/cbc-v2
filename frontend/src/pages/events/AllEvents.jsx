@@ -82,7 +82,6 @@ const AllEvents = () => {
     // const imageUrl = getImageUrl(event.cover_photo_url);
     // console.log(event.cover_photo_url);
     console.log(event.cover_photo_url);
-    console.log(cover_photo_url);
 
     return (
       <div className={styles.eventCard} id={event.id} key={event.id}>
