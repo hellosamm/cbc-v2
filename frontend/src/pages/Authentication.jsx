@@ -42,7 +42,7 @@ const Authentication = ({ pageType }) => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log("submitted info:", formData);
+    // console.log("submitted info:", formData);
 
     const newErrors = { ...initialErrorsState };
 

@@ -36,7 +36,7 @@ export const loginApi = async (userData) => {
   };
 
   try {
-    const response = await fetch(`${DOMAIN}/users/sign_in/`, requestOptions);
+    const response = await fetch(`${DOMAIN}/users/sign_in`, requestOptions);
 
     if (response.ok) {
       const result = await response.json();
