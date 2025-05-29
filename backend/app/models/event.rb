@@ -10,4 +10,5 @@ class Event < ApplicationRecord
   has_many :users, through: :attendees, source: :user
   has_one_attached :cover_photo
   has_many_attached :gallery_images
+  
 end

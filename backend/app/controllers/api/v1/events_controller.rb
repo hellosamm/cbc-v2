@@ -34,6 +34,26 @@ class Api::V1::EventsController < ApplicationController
 
     # could also be written this way 
     # @event = Event.new(event_params.merge(user_id: current_user.id))
+    # 
+    #
+    # if params[:cover_photo].present?
+    #   @event.cover_photo.attach(
+    #     io: params[:cover_photo],
+    #     filename: params[:cover_photo].original_filename,
+    #     key: "images/#{SecureRandom.uuid}-#{params[:cover_photo].original_filename}"
+    #   )
+    # end
+
+    # # Attach gallery images to `gallery/event-<id>/` folder
+    # if params[:gallery_images].present?
+    #   params[:gallery_images].each do |image|
+    #     @event.gallery_images.attach(
+    #       io: image,
+    #       filename: image.original_filename,
+    #       key: "gallery/event-#{@event.id}/#{SecureRandom.uuid}-#{image.original_filename}"
+    #     )
+    #   end
+    # end
 
     if @event.save
       render json: {message: "event was added successfully", data: @event}
