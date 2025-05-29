@@ -10,7 +10,7 @@
   display: flex;
   flex-direction: column;
   width: 100%;
-  background-color: #c9cf7c;
+  background-color: #94aff3;
   border-radius: 15px 0px 0px 15px;
 }
 
@@ -21,7 +21,7 @@
 }
 
 .body {
-  background-color: #e0e3b8;
+  background-color: #b8c9f5;
   border-radius: 0px 15px 15px 0px;
 }
 .title {
@@ -39,12 +39,12 @@
 }
 
 .active {
-  background-color: #828f25;
+  background-color: #002fa7;
   color: white;
 }
 
 .tab.active:first-of-type {
-  background-color: #828f25;
+  background-color: #002fa7;
   border-radius: 15px 0px 0px 0px;
   color: white;
 }

@@ -55,12 +55,13 @@ const Navbar = () => {
           <div className={styles.navbarContent}>
             <Link to="/">
               <img
-                src="/cbc-green.png"
+                src="/CBC-blue.png"
                 alt="cbcLogo"
                 style={{
-                  height: "10rem",
-                  minWidth: "20vh",
+                  height: "4rem",
+                  minWidth: "10vh",
                   objectFit: "contain",
+                  margin: "1rem",
                 }}
               />
             </Link>

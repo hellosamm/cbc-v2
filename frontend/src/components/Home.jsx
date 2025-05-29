@@ -14,7 +14,7 @@ const Home = () => {
             <p>friendship</p>
           </div>
           <button
-            className="mt-5 text-sm md:text-l lg:text-xl text-[#828F25] rounded-[1.5625rem] border-[3px] border-[#828F25] bg-[#F7F6F2] px-6 py-2 "
+            className="mt-5 text-sm md:text-l lg:text-xl text-[#002fa7] rounded-[1.5625rem] border-[3px] border-[#002fa7] bg-[#F7F6F2] px-6 py-2 "
             onClick={() => navigate("/allEvents")}
           >
             find an event near you
@@ -34,7 +34,7 @@ const Home = () => {
             // className="h-auto w-[50vh]"
           />
         </div>
-        <div className="bg-[#828F25]">
+        <div className="bg-[#002fa7]">
           <div className="p-10 text-lg text-[#F7F6F2]">
             <div>
               <h1>Welcome to Cookbook Club!</h1>{" "}

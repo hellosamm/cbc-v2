@@ -41,7 +41,18 @@ const Footer = () => {
 
       <div className="footer-columns">
         <div className="left-column">
-          <Link to={"/"}>Cookbook Club</Link>
+          {/* <Link to={"/"}>Cookbook Club</Link> */}
+          <Link to="/">
+            <img
+              src="/CBC-blue.png"
+              alt="cbcLogo"
+              style={{
+                height: "1.5rem",
+                minWidth: "10vh",
+                objectFit: "contain",
+              }}
+            />
+          </Link>
           <p>made by @samm.bakerr</p>
         </div>
 

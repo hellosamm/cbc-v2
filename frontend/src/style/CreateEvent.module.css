@@ -31,7 +31,7 @@
 }
 
 .leftHeader a:hover {
-  color: #828f25;
+  color: #002fa7;
   font-weight: 600;
 }
 
@@ -40,7 +40,7 @@
 }
 
 .backButton:hover {
-  color: #828f25;
+  color: #002fa7;
   font-weight: 600;
 }
 
@@ -93,7 +93,7 @@ form .inputBlock:last-of-type {
 
 .inputField:focus {
   border: solid;
-  border-color: #828f25;
+  border-color: #002fa7;
   outline: none;
 }
 

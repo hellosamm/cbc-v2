@@ -3,8 +3,8 @@ import { APIV1, DOMAIN } from "./config";
 export const createEventApi = async (authToken, formData) => {
   const requestOptions = {
     method: "POST",
-    headers: { "Content-Type": "application/json", Authorization: authToken },
-    body: JSON.stringify({ event: formData }),
+    headers: { Authorization: authToken },
+    body: formData,
   };
 
   try {

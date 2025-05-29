@@ -62,7 +62,7 @@ form .inputBlock:last-of-type {
 
 .inputField:focus {
   border: solid;
-  border-color: #828f25;
+  border-color: #002fa7;
   outline: none;
 }
 

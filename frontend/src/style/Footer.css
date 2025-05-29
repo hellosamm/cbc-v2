@@ -1,11 +1,11 @@
 .footer {
-  background-color: #eb7536;
+  /* background-color: 94aff3#; */
   display: flex;
   flex-direction: column;
   align-items: left;
 
   padding: 7rem 2rem 2rem 2rem;
-  color: #f7f6f2;
+  color: #002fa7;
   min-width: 10rem;
 }
 .footer-links {
