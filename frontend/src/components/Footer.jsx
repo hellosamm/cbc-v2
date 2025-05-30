@@ -58,18 +58,7 @@ const Footer = () => {
 
         <div className="right-column">
           <div className="stacked-items">
-            <h2>Photo Credits:</h2>
-            <p>Sophie Olsen</p>
-            <p>Catherine Erickson</p>
-          </div>
-          <div className="stacked-items">
-            <Link>About</Link>
             <Link to={"AllEvents"}>Find an Event</Link>
-          </div>
-          <div className="stacked-items">
-            <Link to={loggedIn ? "/createEvent" : "/login"}>
-              Create an Event
-            </Link>
             <Link to={loggedIn ? "/profile" : "/login"}>
               {loggedIn ? "Manage Your Account" : "Login"}
             </Link>
