@@ -8,6 +8,7 @@ const Footer = () => {
 
   return (
     <div className="footer">
+      <div className="full-line"></div>
       {/* <div className="flex space-x-4 items-center">
         <a href="https://www.instagram.com/samm.bakerr/" target="blank">
           <img src={instagram} className="w-6 " />
@@ -53,7 +54,6 @@ const Footer = () => {
               }}
             />
           </Link>
-          <p>made by @samm.bakerr</p>
         </div>
 
         <div className="right-column">

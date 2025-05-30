@@ -62,6 +62,7 @@ const Navbar = () => {
                   minWidth: "10vh",
                   objectFit: "contain",
                   margin: "1rem",
+                  // padding: "1rem",
                 }}
               />
             </Link>

@@ -5,9 +5,17 @@
   align-items: left;
 
   padding: 7rem 2rem 2rem 2rem;
-  color: #002fa7;
+  color: black;
   min-width: 10rem;
 }
+
+.full-line {
+  height: 2px;
+  background-color: black;
+  width: 100%;
+  margin: 2rem 0;
+}
+
 .footer-links {
   display: flex;
   gap: 1rem;
