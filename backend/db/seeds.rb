@@ -51,18 +51,18 @@ events[0].cover_photo.attach(
 events[1].cover_photo.attach(
   io: File.open(Rails.root.join("db/images/italian_islands.jpg")),
   filename: "italian_islands.jpg",
-  content_type: "image/jpg"
+  content_type: "image/jpeg"
 )
 
 events[2].cover_photo.attach(
   io: File.open(Rails.root.join("db/images/picnic.jpg")),
   filename: "picnic.jpg",
-  content_type: "image/jpg"
+  content_type: "image/jpeg"
 )
 
 events[3].cover_photo.attach(
   io: File.open(Rails.root.join("db/images/on_the_curry_trail.jpg")),
   filename: "on_the_curry_trail.jpg",
-  content_type: "image/jpg"
+  content_type: "image/jpeg"
 )
 events.each(&:reload)

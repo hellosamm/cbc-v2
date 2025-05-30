@@ -8,14 +8,11 @@ class Api::V1::EventsController < ApplicationController
     # show all events
     @events = Event.all
 
-    s3_base_url = ENV.fetch("S3_BASE_URL")
-
     events_with_cover_photo = @events.map do |event|
       event_attributes = event.attributes
-
+      
       if event.cover_photo.attached?
-        filename = event.cover_photo.filename.to_s
-        event_attributes[:cover_photo_url] = "#{s3_base_url}#{filename}"
+        event_attributes[:cover_photo_url] = url_for(event.cover_photo)
       else
         event_attributes[:cover_photo_url] = nil
       end
@@ -23,6 +20,7 @@ class Api::V1::EventsController < ApplicationController
       event_attributes
     end
 
+    
     render json: { data: events_with_cover_photo }
   end
 
@@ -116,7 +114,7 @@ end
 
 def authorize_user
   @event = Event.find(params[:id])
-  unless @event.user == current_user
+  unless @event.creator == current_user
     render json: { error: "access denied"}, status: :forbidden
   end
 end
