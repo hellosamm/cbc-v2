@@ -9,53 +9,58 @@ const Home = () => {
   return (
     <div>
       <div className={styles.fullPage}>
-        <div className={styles.imageRow}>
-          <img src="./table-food.jpg" alt="homepage header image" />
-          <img src="./lemon-sorbet.jpg" alt="homepage header image" />
-          <img src="./ocean-view.jpg" alt="homepage header image" />
+        <div className={styles.topHalf}>
+          <div className={styles.imageRow}>
+            <img src="./table-food.jpg" alt="homepage header image" />
+            <img src="./lemon-sorbet.jpg" alt="homepage header image" />
+            <img src="./ocean-view.jpg" alt="homepage header image" />
+          </div>
+          <div className={styles.header1}>
+            <p className={styles.tagline1}>where food meets friendship</p>
+          </div>
         </div>
-        {/* <div className={styles.header1}>
-          <p className={styles.tagline1}>where food meets friendship</p>
-        </div> */}
         <div className={styles.bottomHalf}>
           <div className={styles.header2}>
-            <p className={styles.tagline}>HOW IT WORKS</p>
-            <div className={styles.subheader}>
-              <p>
-                no fancy chef skills required- just a love for food and a
-                willingness to try new things!
+            <p className={styles.tagline2}>HOW IT WORKS</p>
+
+            <div className={styles.button}>
+              <Link to="/allEvents" id="button-2">
+                find an event
+              </Link>
+            </div>
+          </div>
+
+          <div className={styles.subheader}>
+            <p>
+              *no fancy chef skills required* just a love for food and a
+              willingness to try new things!
+            </p>
+          </div>
+
+          <div className={styles.cardGroup}>
+            <div className={styles.card}>
+              <p>1. FIND AN EVENT </p>
+              <p className={styles.hiddenText}>
+                Each event has a theme- it could be seasonal, a new cookbook, or
+                a fun challenge.
+              </p>
+            </div>
+            <div className={styles.card}>
+              <p>2. MAKE YOUR DISH</p>
+              <p className={styles.hiddenText}>
+                Find a recipe that fits the theme and whip it up in your
+                kitchen.
+              </p>
+            </div>
+            <div className={styles.card}>
+              <p>3. GATHER WITH FRIENDS</p>
+              <p className={styles.hiddenText}>
+                Bring your dish to our monthly meetup & enjoy a feast of
+                flavors.
               </p>
             </div>
           </div>
-          <div>
-            <Link to="/allEvents" id="button-2">
-              find an event
-            </Link>
-          </div>
         </div>
-        <div className={styles.cardGroup}>
-          <div className={styles.card}>
-            <p>1. FIND AN EVENT </p>
-            <p className={styles.hiddenText}>
-              Each event has a theme- it could be seasonal, a new cookbook, or a
-              fun challenge.
-            </p>
-          </div>
-          <div className={styles.card}>
-            <p>2. MAKE YOUR DISH</p>
-            <p className={styles.hiddenText}>
-              Find a recipe that fits the theme and whip it up in your kitchen.
-            </p>
-          </div>
-          <div className={styles.card}>
-            <p>3. GATHER WITH FRIENDS</p>
-            <p className={styles.hiddenText}>
-              Bring your dish to our monthly meetup & enjoy a feast of flavors.
-            </p>
-          </div>
-        </div>
-
-        <div></div>
       </div>
       {/* <div className={styles.fullPage}>
         <div className="absolute text-4xl md:text-6xl lg:text-8xl text-center text-[#F7F6F2] font-bold z-10">

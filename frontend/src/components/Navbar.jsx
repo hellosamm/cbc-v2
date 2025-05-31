@@ -49,7 +49,7 @@ const Navbar = () => {
   };
 
   return (
-    <div>
+    <div className={styles.navbar}>
       {!isForm && (
         <div className={styles.navbarContainer}>
           <div className={styles.navbarContent}>
@@ -67,7 +67,7 @@ const Navbar = () => {
               />
             </Link>
             <Link to="allEvents" className={styles.navLink}>
-              <h2>Events</h2>
+              <h2>EVENTS</h2>
             </Link>
 
             {loggedIn ? (
@@ -116,7 +116,7 @@ const Navbar = () => {
             ) : (
               <div className={styles.navLink}>
                 <Link to="login">
-                  <h2>Login</h2>
+                  <h2>LOGIN</h2>
                 </Link>
               </div>
             )}

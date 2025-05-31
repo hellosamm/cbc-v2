@@ -58,8 +58,10 @@ const Footer = () => {
 
         <div className="right-column">
           <div className="stacked-items">
-            <Link to={"AllEvents"}>Find an Event</Link>
-            <Link to={loggedIn ? "/profile" : "/login"}>
+            <Link to={"AllEvents"} className="nav-link">
+              Find an Event
+            </Link>
+            <Link to={loggedIn ? "/profile" : "/login"} className="nav-link">
               {loggedIn ? "Manage Your Account" : "Login"}
             </Link>
           </div>

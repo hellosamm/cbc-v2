@@ -98,3 +98,12 @@
     margin-bottom: 0.5rem;
   }
 }
+
+/* .nav-link {
+  display: inline-block;
+  min-width: max-content;
+} */
+
+.nav-link:hover {
+  font-weight: bold;
+}

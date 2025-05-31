@@ -5,10 +5,16 @@
   align-items: center; */
 }
 
+.topHalf {
+  display: flex;
+  flex-direction: column;
+}
+
 .imageRow {
   display: flex;
   flex-direction: row;
-  max-width: 100vh;
+
+  /* max-width: 100vh; */
 }
 
 .imageRow img {
@@ -27,37 +33,53 @@
   font-weight: 500;
   font-size: 2rem;
   color: #002fa7;
+  font-style: italic;
+  margin-bottom: 3rem;
 }
 
 .bottomHalf {
   display: flex;
-  flex-direction: row;
-  align-items: flex-start;
-  justify-content: space-between;
+  flex-direction: column;
+  margin: 0 3rem 0 3rem;
 }
+
+/* flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  margin: 0px 5rem 0 5rem; */
 
 .header2 {
   display: flex;
-  flex-direction: column;
+  justify-content: space-between;
   color: #002fa7;
 }
 
-.tagline {
+.header2 p {
+  white-space: nowrap;
+}
+
+.tagline2 {
   font-weight: bold;
   font-size: 3rem;
+  margin-right: 2rem;
 }
 
 .subheader {
   margin-bottom: 2rem;
 }
 
-.cardGroup {
+.button {
+  display: flex;
+  align-items: center;
+}
+
+/* .cardGroup {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 25px;
+  gap: 1rem;
   justify-content: center;
   width: 100%;
-  margin: 2rem;
+  min-width: 1rem;
 }
 
 @media (max-width: 700px) {
@@ -69,14 +91,41 @@
 .card {
   border: 5px solid #002fa7;
   border-radius: 25px;
-  height: 22rem;
+  min-height: 22rem;
   max-height: 22rem;
-  width: 20rem;
+  min-width: 20rem;
   max-width: 20rem;
 
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+} */
+
+.cardGroup {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr)); /* good */
+  gap: 25px;
+  justify-content: center;
+  width: 100%;
+  min-width: 0; /* allow shrinking */
+}
+
+.card {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  border: 5px solid #002fa7;
+  border-radius: 25px;
+  width: 100%; /* make card fill the grid cell */
+  min-width: 0; /* prevent overflow */
+  box-sizing: border-box; /* so padding/borders don’t add to width */
+}
+
+/* Media query for small screens */
+@media (max-width: 700px) {
+  .cardGroup {
+    grid-template-columns: 1fr;
+  }
 }
 
 .card:hover {
@@ -89,6 +138,7 @@
   font-size: 1.5rem;
   margin-left: 2rem;
   margin-top: 1rem;
+  margin-right: 1rem;
 }
 
 .card:hover p {
