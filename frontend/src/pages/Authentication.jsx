@@ -101,10 +101,10 @@ const Authentication = ({ pageType }) => {
   };
 
   const handleResponse = ([result, error]) => {
-    console.log("result: ", result);
+    // console.log("result: ", result);
 
     if (error) {
-      console.log("error: ", error);
+      // console.log("error: ", error);
     }
 
     if (result && !error) {
@@ -115,7 +115,7 @@ const Authentication = ({ pageType }) => {
 
   const checkAuthToken = (authToken, error) => {
     if (authToken) {
-      console.log("token received, ", authToken);
+      // console.log("token received, ", authToken);
       localStorage.setItem("authToken", authToken);
 
       setCookies("authToken", authToken);
@@ -126,7 +126,7 @@ const Authentication = ({ pageType }) => {
   };
 
   const handleCurrentUserData = (result) => {
-    console.log(result.data);
+    // console.log(result.data);
     localStorage.setItem("currentUserData", JSON.stringify(result.data));
   };
 

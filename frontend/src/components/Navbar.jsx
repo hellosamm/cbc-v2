@@ -5,6 +5,7 @@ import { logoutApi } from "../apis/authentication";
 import { Menu, MenuButton, MenuItem, MenuItems } from "@headlessui/react";
 import useAuth from "../hooks/useAuth";
 import styles from "../../src/style/Navbar.module.css";
+import devLog from "../utilites/devLog";
 
 const Navbar = () => {
   const { currentUserData } = useAuth();
@@ -21,24 +22,24 @@ const Navbar = () => {
     if (cookies.authToken) {
       // set state to logged in
       setLoggedIn(true);
-      console.log("sign in state:", cookies.authToken);
+      devLog("sign in state:", cookies.authToken);
     }
   }, [cookies.authToken]);
 
   const handleLogout = async () => {
     const [result, authToken, error] = await logoutApi(cookies.authToken);
-    console.log("result: ", result);
-    console.log("authToken: ", authToken);
-    console.log("error: ", error);
+    devLog("result: ", result);
+    devLog("authToken: ", authToken);
+    devLog("error: ", error);
 
     handleResponse([result, authToken, error]);
   };
 
   const handleResponse = ([result, authToken, error]) => {
     if (error) {
-      console.log("error: ", error);
+      devLog("error: ", error);
       // removeCookie("authToken");
-      console.log("authToken: ", authToken);
+      devLog("authToken: ", authToken);
     }
 
     if (result && !error) {

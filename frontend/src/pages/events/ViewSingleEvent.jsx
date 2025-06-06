@@ -11,6 +11,8 @@ import { formatDateTime } from "/src/utilites/formatDateTime.js";
 import useAuth from "../../hooks/useAuth";
 import styles from "../../style/SingleEvent.module.css";
 import { fetchAttendees } from "../../utilites/fetchAttendees";
+import devLog from "../../utilites/devLog";
+
 
 const ViewSingleEvent = () => {
   const { id } = useParams();
@@ -54,7 +56,7 @@ const ViewSingleEvent = () => {
   }, [id, authToken]);
 
   useEffect(() => {
-    // console.log("updated attendees array:", currentAttendees);
+    // devLog("updated attendees array:", currentAttendees);
   }, [currentAttendees]);
 
   useEffect(() => {
@@ -62,7 +64,7 @@ const ViewSingleEvent = () => {
       setFormattedTimes(formatDateTime(event.start_time, event.end_time));
     }
 
-    // console.log(formattedTimes);
+    // devLog(formattedTimes);
   }, [event]);
 
   useEffect(() => {
@@ -75,7 +77,7 @@ const ViewSingleEvent = () => {
 
   const fetchEvent = async () => {
     const [result] = await viewSingleEventApi(id);
-    // console.log(result);
+    // devLog(result);
     setEvent(result.data);
     setMessage(result.message);
     setCoverPhotoUrl(result.cover_photo_url);
@@ -85,31 +87,31 @@ const ViewSingleEvent = () => {
     if (!authToken) return;
 
     const [status] = await checkUserRSVP(authToken, id);
-    // console.log(status);
+    // devLog(status);
     setRsvpStatus(status);
   };
 
   // moved into fetchAttendees.js utilities file
   // const fetchAttendees = async () => {
   //   const result = await showEventAttendees(authToken, id);
-  //   // console.log("result", result);
-  //   // console.log(result.length);
+  //   // devLog("result", result);
+  //   // devLog(result.length);
   //   // const attendeesArray = result || [];
   //   setCurrentAttendees(result[0]);
-  //   console.log("currentAttendees array", currentAttendees);
+  //   devLog("currentAttendees array", currentAttendees);
   // };
 
   const handleSignUp = async () => {
     const [result] = await attendeeSignUp(authToken, id);
 
-    console.log(result);
+    devLog(result);
     setSuccessMessage(result.message);
     fetchRSVPStatus();
   };
 
   const handleCancelSignUp = async () => {
     const [result] = await cancelSignUp(authToken, id);
-    console.log(result);
+    devLog(result);
     setSuccessMessage(result.message);
     fetchRSVPStatus();
   };

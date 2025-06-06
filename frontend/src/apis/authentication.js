@@ -1,3 +1,4 @@
+import devLog from "../utilites/devLog";
 import { DOMAIN, APIV1 } from "./config";
 
 export const registerApi = async (userData) => {
@@ -17,7 +18,7 @@ export const registerApi = async (userData) => {
       return [result, authToken, ""];
     } else if (response.status == 422) {
       // } else {
-      console.log("response was unsucessful");
+      devLog("response was unsucessful");
 
       const errorMessage = await response.json();
       return [null, null, errorMessage];
@@ -40,20 +41,20 @@ export const loginApi = async (userData) => {
 
     if (response.ok) {
       const result = await response.json();
-      console.log("response was successful");
+      devLog("response was successful");
 
       const authToken = response.headers.get("Authorization");
-      console.log(authToken);
+      devLog(authToken);
 
       return [result, authToken, ""];
     } else if (response.status == 401) {
-      console.log("response was unsuccessful");
+      devLog("response was unsuccessful");
 
       const errorMessage = await response.text();
       return [null, null, errorMessage];
     }
   } catch (error) {
-    console.error("network errror: ", error);
+    devLog("network errror: ", error);
     return ["", "", `server down: ${error}`];
   }
 };
@@ -72,11 +73,11 @@ export const logoutApi = async (authToken) => {
 
     if (response.ok) {
       const result = await response.json();
-      console.log("response was successful");
+      devLog("response was successful");
 
       return [result, authToken, ""];
     } else if (response.status == 401) {
-      console.log("response was unsuccessful");
+      devLog("response was unsuccessful");
 
       const errorMessage = await response.json();
       return [null, authToken, errorMessage];
@@ -106,7 +107,7 @@ export const editUserApi = async (formData, authToken) => {
       return [result, ""];
     } else if (response.status == 422) {
       // } else {
-      console.log("response was unsucessful");
+      devLog("response was unsucessful");
 
       const errorMessage = await response.json();
       return [null, errorMessage];

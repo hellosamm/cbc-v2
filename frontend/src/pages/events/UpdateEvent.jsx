@@ -5,6 +5,7 @@ import { Link } from "react-router-dom";
 import styles from "../../style/CreateEvent.module.css";
 import useAuth from "../../hooks/useAuth";
 import { updateEvent } from "../../apis/events";
+import devLog from "../../utilites/devLog";
 
 const UpdateEvent = () => {
   const event = useParams();
@@ -31,7 +32,7 @@ const UpdateEvent = () => {
     // return the updated data to check that it was successful
     const [result, error] = await updateEvent(formData, authToken, event.id);
 
-    console.log("result", result);
+    devLog("result", result);
     // console.log("error", error);
 
     if (result) {
@@ -39,7 +40,7 @@ const UpdateEvent = () => {
     }
 
     setMessage(result.message);
-    console.log("success");
+    devLog("success");
   };
 
   // const handleInputChange = (e) => {
@@ -49,7 +50,7 @@ const UpdateEvent = () => {
   //     [name]: value,
   //   }));
 
-  //   // console.log(formData);
+  //   devLog(formData);
   // };
 
   // const handleSubmit = async (e) => {
@@ -58,8 +59,8 @@ const UpdateEvent = () => {
   //   // return the updated data to check that it was successful
   //   const [result, error] = await editUserApi(formData, authToken);
 
-  //   console.log("result", result);
-  //   // console.log("error", error);
+  //   devLog("result", result);
+  //   // devLog("error", error);
 
   //   if (result) {
   //     setCurrentUserData(result); // Updates UI in memory
