@@ -1,4 +1,5 @@
 import { APIV1, DOMAIN } from "./config";
+import devLog from "../utilites/devLog";
 
 export const createEventApi = async (authToken, formData) => {
   const requestOptions = {
@@ -15,18 +16,18 @@ export const createEventApi = async (authToken, formData) => {
 
       return [result, ""];
     } else if (response.status == 401) {
-      console.log("response was unsucessful");
+      devLog("response was unsucessful");
 
       const errorMessage = await response.text();
       return [null, errorMessage];
     } else if (response.status == 422) {
-      console.log("response was unsucessful");
+      devLog("response was unsucessful");
 
       const errorMessage = await response.json();
       return [null, errorMessage];
     }
   } catch (error) {
-    console.error("network errror: ", error);
+    devLog("network errror: ", error);
     return [`server down: ${error}`];
   }
 };
@@ -46,7 +47,7 @@ export const viewAllEventsApi = async () => {
       return result;
     }
   } catch (error) {
-    console.error("network errror: ", error);
+    devLog("network errror: ", error);
     return [`server down: ${error}`];
   }
 };
@@ -65,12 +66,12 @@ export const viewSingleEventApi = async (id) => {
 
     if (response.ok) {
       const result = await response.json();
-      // console.log("request was successful");
-      // console.log(result);
+      devLog("request was successful");
+      devLog(result);
       return [result];
     }
   } catch (error) {
-    console.error("network errror: ", error);
+    devLog("network errror: ", error);
     return [`server down: ${error}`];
   }
 };
@@ -115,7 +116,7 @@ export const updateEvent = async (formData, authToken, id) => {
       return [result, ""];
     } else if (response.status == 422) {
       // } else {
-      console.log("response was unsucessful");
+      devLog("response was unsucessful");
 
       const errorMessage = await response.json();
       return [null, errorMessage];

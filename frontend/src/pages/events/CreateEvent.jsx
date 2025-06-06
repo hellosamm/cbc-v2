@@ -12,6 +12,7 @@ import "react-time-picker/dist/TimePicker.css";
 import "react-clock/dist/Clock.css";
 import "../../App.css";
 import styles from "../../style/CreateEvent.module.css";
+import devLog from "../../utilites/devLog";
 
 // const initialErrorsState = {
 //   title: "",
@@ -47,7 +48,7 @@ const AddEvent = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log(formData);
+    devLog(formData);
 
     if (!date || !startTime || !endTime) {
       console.error("Missing required field");
@@ -81,8 +82,8 @@ const AddEvent = () => {
 
     const [result, error] = await createEventApi(authToken, formattedData);
 
-    console.log("result:", result);
-    console.log("error:", error.message);
+    devLog("result:", result);
+    devLog("error:", error.message);
 
     handleResponse([result, error]);
   };
@@ -90,7 +91,7 @@ const AddEvent = () => {
   const handleDateChange = (date) => {
     if (date) {
       const formattedDate = date.toISOString().split("T")[0];
-      console.log(formattedDate);
+      devLog(formattedDate);
       setDate(formattedDate);
 
       setSelectedDate(date);
@@ -99,7 +100,7 @@ const AddEvent = () => {
 
   const handleFileChange = (e) => {
     const file = e.target.files[0];
-    console.log(file);
+    devLog(file);
     setFormData((prevState) => ({
       ...prevState,
       cover_photo: file,
@@ -107,10 +108,10 @@ const AddEvent = () => {
   };
 
   const handleResponse = ([result, error]) => {
-    console.log("result: ", result);
+    devLog("result: ", result);
 
     if (error) {
-      console.log("error: ", error);
+      devLog("error: ", error);
       setErrors(error.message);
     }
 

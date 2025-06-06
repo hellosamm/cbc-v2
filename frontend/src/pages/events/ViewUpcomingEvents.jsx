@@ -4,6 +4,7 @@ import useAuth from "../../hooks/useAuth";
 import { Link } from "react-router-dom";
 import styles from "../../style/ManageEvents.module.css";
 import { formatDateTime } from "../../utilites/formatDateTime";
+import devLog from "../../utilites/devLog";
 
 const ViewUpcomingEvents = () => {
   const { authToken } = useAuth();
@@ -12,7 +13,7 @@ const ViewUpcomingEvents = () => {
   useEffect(() => {
     const fetchUserEvents = async () => {
       const [result] = await showUserEvents(authToken);
-      console.log("result:", result);
+      devLog("result:", result);
 
       const formattedEvent = result.data
         .map((event) => ({

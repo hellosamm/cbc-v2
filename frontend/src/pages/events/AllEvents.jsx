@@ -7,6 +7,7 @@ import "../../App.css";
 import { formatDateTime } from "../../utilites/formatDateTime";
 import { fetchAttendees } from "../../utilites/fetchAttendees";
 import useAuth from "../../hooks/useAuth";
+import devLog from "../../utilites/devLog";
 
 const AllEvents = () => {
   const { authToken } = useAuth();
@@ -19,7 +20,7 @@ const AllEvents = () => {
   useEffect(() => {
     const fetchAllEvents = async () => {
       const result = await viewAllEventsApi();
-      // console.log(result);
+      devLog(result);
 
       const today = new Date();
       today.setHours(0, 0, 0, 0);
@@ -28,7 +29,7 @@ const AllEvents = () => {
       const pastEvents = [];
 
       result.data.forEach((event) => {
-        // console.log(event.cover_photo_url);
+        devLog(event.cover_photo_url);
         const formattedEvent = {
           ...event,
           formattedTime: formatDateTime(event.start_time, event.end_time),
