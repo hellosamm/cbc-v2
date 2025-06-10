@@ -39,7 +39,13 @@ events = Event.create!([
   start_time: DateTime.new(2025, 9, 7, 4, 30),
   end_time: DateTime.new(2025, 9, 7, 6, 30),
   location: "Katie's House",
-  user_id: users[2].id}
+  user_id: users[2].id}, 
+  {title: "Cake Picnic", 
+  description: "Bring a cake to share!", 
+  start_time: DateTime.new(2025, 5, 15, 1, 30),
+  end_time: DateTime.new(2025, 5, 15, 3, 30),
+  location: "The Park",
+  user_id: users[0].id}, 
 ])
 
 events[0].cover_photo.attach(
@@ -65,4 +71,11 @@ events[3].cover_photo.attach(
   filename: "on_the_curry_trail.jpg",
   content_type: "image/jpeg"
 )
+
+events[4].cover_photo.attach(
+  io: File.open(Rails.root.join("db/images/cake.webp")),
+  filename: "cake_picnic.jpg",
+  content_type: "image/jpeg"
+)
+
 events.each(&:reload)
