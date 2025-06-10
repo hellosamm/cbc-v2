@@ -1,9 +1,11 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { viewAllEventsApi } from "../../apis/events";
+import { fetchAttendees } from "../../utilites/fetchAttendees";
 import useAuth from "../../hooks/useAuth";
 import styles from "../../style/ManageEvents.module.css";
 import { formatDateTime } from "../../utilites/formatDateTime";
+import devLog from "../../utilites/devLog";
 
 export default function UserCreatedEvents() {
   const [events, setEvents] = useState([]);
@@ -11,24 +13,26 @@ export default function UserCreatedEvents() {
 
   useEffect(() => {
     const fetchAllEvents = async () => {
-      const [result] = await viewAllEventsApi();
+      const result = await viewAllEventsApi();
 
-      const formattedEvent = result
+      devLog("result", result);
+
+      const formattedEvent = result.data
         .map((event) => ({
           ...event,
           formattedTime: formatDateTime(event.start_time, event.end_time),
         }))
         .sort((a, b) => new Date(a.start_time) - new Date(b.start_time));
 
-      // const attendeesData = await Promise.all(
-      //   result.map(async (event) => {
-      //     const attendeesList = await fetchAttendees(authToken, event.id);
-      //     return {
-      //       id: event.id,
-      //       count: Array.isArray(attendeesList) ? attendeesList.length : 0,
-      //     };
-      //   })
-      // );
+      const attendeesData = await Promise.all(
+        result.data.map(async (event) => {
+          const attendeesList = await fetchAttendees(authToken, event.id);
+          return {
+            id: event.id,
+            count: Array.isArray(attendeesList) ? attendeesList.length : 0,
+          };
+        })
+      );
 
       setEvents(formattedEvent);
     };
@@ -46,7 +50,15 @@ export default function UserCreatedEvents() {
     <div id={event.id} key={event.id}>
       <Link to={`/${event.title.replace(/\s+/g, "-")}/event/${event.id}`}>
         <div className={styles.eventCard}>
-          <div className={styles.imageContainer}></div>
+          {event.cover_photo_url ? (
+            <img
+              src={event.cover_photo_url}
+              alt={`${event.title} Cover`}
+              className={styles.imageContainer}
+            />
+          ) : (
+            <div className={styles.imageContainer}></div>
+          )}
           <div className={styles.individualEvent}>
             <div>
               <p className={styles.title}>{event.title}</p>
