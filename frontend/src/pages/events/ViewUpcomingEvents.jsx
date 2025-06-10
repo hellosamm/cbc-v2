@@ -32,7 +32,15 @@ const ViewUpcomingEvents = () => {
     <div id={event.id} key={event.id}>
       <div className={styles.eventCard}>
         <Link to={`/${event.title.replace(/\s+/g, "-")}/event/${event.id}`}>
-          <div className={styles.imageContainer}></div>
+          {event.cover_photo ? (
+            <img
+              src={event.cover_photo}
+              alt={`${event.title} Cover`}
+              className={styles.imageContainer}
+            />
+          ) : (
+            <div className={styles.imageContainer}></div>
+          )}
           <div className={styles.individualEvent}>
             <div>
               <p className={styles.title}>{event.title}</p>

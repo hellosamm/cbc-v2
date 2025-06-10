@@ -18,7 +18,13 @@ class Api::V1::AttendeesController < ApplicationController
   events = Event.joins(:attendees).where(attendees: { user_id: current_user.id }).uniq
 
   if events.any?
-    render json: { data: events }, status: :ok
+    render json: { 
+      data: events.map do |event|
+        event.as_json.merge(
+          cover_photo: event.cover_photo.attached? ? url_for(event.cover_photo) : nil
+        )
+      end
+       }, status: :ok
   else
     render json: { message: "No events found for this user" }, status: :not_found
   end 
