@@ -13,6 +13,7 @@ import "react-clock/dist/Clock.css";
 import "../../App.css";
 import styles from "../../style/CreateEvent.module.css";
 import devLog from "../../utilites/devLog";
+import { useEffect } from "react";
 
 // const initialErrorsState = {
 //   title: "",
@@ -37,6 +38,15 @@ const AddEvent = () => {
   const [errors, setErrors] = useState(initialErrorsState);
   const { loggedIn, authToken } = useAuth();
   const navigate = useNavigate();
+
+  // useEffect(() => {
+  //   if (startTime) {
+  //     devLog("updated startTIME:", startTime);
+  //   }
+  //   if (endTime) {
+  //     devLog("updated endTime:", endTime);
+  //   }
+  // }, [startTime, endTime]);
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
@@ -195,7 +205,7 @@ const AddEvent = () => {
             <DatePicker
               selected={selectedDate}
               onChange={handleDateChange}
-              dateFormat="yyy-MM-dd"
+              dateFormat="yyyy-MM-dd"
               minDate={new Date()}
               placeholderText="Select a Date"
               className={styles.inputField}

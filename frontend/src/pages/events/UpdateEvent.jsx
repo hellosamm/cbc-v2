@@ -6,11 +6,16 @@ import styles from "../../style/CreateEvent.module.css";
 import useAuth from "../../hooks/useAuth";
 import { updateEvent } from "../../apis/events";
 import devLog from "../../utilites/devLog";
+import DatePicker from "react-datepicker";
+import TimePicker from "react-time-picker";
 
 const UpdateEvent = () => {
   const event = useParams();
   const { authToken } = useAuth();
   const [message, setMessage] = useState();
+  const [date, setDate] = useState();
+  const [startTime, setStartTime] = useState();
+  const [endTime, setEndTime] = useState();
   const [formData, setFormData] = useState({
     title: "",
     location: "",
@@ -22,6 +27,19 @@ const UpdateEvent = () => {
       const [result] = await viewSingleEventApi(event.id);
 
       setFormData(result.data);
+
+      const utcDate = new Date(result.data.start_time);
+      const localDate = new Date(
+        utcDate.getFullYear(),
+        utcDate.getMonth(),
+        utcDate.getDate()
+      );
+
+      setDate(localDate);
+
+      // setDate(result.data.start_time.split("T")[0]);
+      setStartTime(result.data.start_time);
+      setEndTime(result.data.end_time);
     };
     fetchEvent();
   }, [event.id]);
@@ -30,7 +48,29 @@ const UpdateEvent = () => {
     e.preventDefault();
     //make api call, update the currentUserData with the formData
     // return the updated data to check that it was successful
-    const [result, error] = await updateEvent(formData, authToken, event.id);
+    const formattedData = new FormData();
+
+    formattedData.append("event[title]", formData.title);
+    formattedData.append("event[location]", formData.location);
+    formattedData.append("event[description]", formData.description);
+    formattedData.append(
+      "event[start_time]",
+      new Date(`${date} ${startTime}`).toISOString()
+    );
+    formattedData.append(
+      "event[end_time]",
+      new Date(`${date} ${endTime}`).toISOString()
+    );
+
+    // if (formData.cover_photo) {
+    //   formattedData.append("event[cover_photo]", formData.cover_photo);
+    // }
+
+    const [result, error] = await updateEvent(
+      formattedData,
+      authToken,
+      event.id
+    );
 
     devLog("result", result);
     // console.log("error", error);
@@ -102,15 +142,15 @@ const UpdateEvent = () => {
   //   handleResponse([result, error]);
   // };
 
-  // const handleDateChange = (date) => {
-  //   if (date) {
-  //     const formattedDate = date.toISOString().split("T")[0];
-  //     console.log(formattedDate);
-  //     setDate(formattedDate);
+  const handleDateChange = (date) => {
+    if (date) {
+      const formattedDate = date.toISOString().split("T")[0];
+      console.log(formattedDate);
+      setDate(formattedDate);
 
-  //     setSelectedDate(date);
-  //   }
-  // };
+      setDate(date);
+    }
+  };
 
   return (
     <div className={styles.createEvent}>
@@ -161,38 +201,37 @@ const UpdateEvent = () => {
               onChange={handleInputChange}
             />
           </div>
-          {/* <div className={styles.inputBlock}>
+          <div className={styles.inputBlock}>
             <h2>Date</h2>
-            <input
-              name="date"
-              type="text"
-              placeholder="date"
-              value={formData.start_time}
+            <DatePicker
+              selected={date}
+              onChange={handleDateChange}
+              dateFormat={"yyyy-MM-dd"}
+              minDate={new Date()}
+              placeholder="Select a Date"
               className={styles.inputField}
             />
-          </div> */}
-          {/* <div className={styles.inputBlock}>
+          </div>
+          <div className={styles.inputBlock}>
             <h2>Start Time</h2>
-            <input
-              name="start time"
-              type="text"
-              placeholder="start time"
-              value={formData.start_time}
+            <TimePicker
+              onChange={setStartTime}
+              value={startTime}
+              format="hh:mm a"
+              disableClock={true}
               className={styles.inputField}
-              onChange={handleInputChange}
             />
-          </div> */}
-          {/* <div className={styles.inputBlock}>
+          </div>
+          <div className={styles.inputBlock}>
             <h2>End Time</h2>
-            <input
-              name="end time"
-              type="text"
-              placeholder="end time"
-              value={formData.end_time}
+            <TimePicker
+              onChange={setEndTime}
+              value={endTime}
+              format="hh:mm a"
+              disableClock={true}
               className={styles.inputField}
-              onChange={handleInputChange}
             />
-          </div> */}
+          </div>
         </form>
         {message && <p className={styles.errors}>{message}</p>}
       </div>

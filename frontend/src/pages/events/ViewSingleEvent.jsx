@@ -13,7 +13,6 @@ import styles from "../../style/SingleEvent.module.css";
 import { fetchAttendees } from "../../utilites/fetchAttendees";
 import devLog from "../../utilites/devLog";
 
-
 const ViewSingleEvent = () => {
   const { id } = useParams();
   const navigate = useNavigate();
@@ -211,12 +210,14 @@ const ViewSingleEvent = () => {
                 <p>{event.location}</p>
               </div>
               <div className={styles.singleDetail}>
-                <h2>Time</h2>
-                <p>
-                  {/* {event.start_time} - {event.end_time} */}
-                  {formattedTimes.formattedStartTime} -{" "}
-                  {formattedTimes.formattedEndTime}
-                </p>
+                <h2>Date & Time</h2>
+                <div>
+                  <p>{formattedTimes.formattedDate}</p>
+                  <p>
+                    {formattedTimes.formattedStartTime} -{" "}
+                    {formattedTimes.formattedEndTime}
+                  </p>
+                </div>
               </div>
               {/* {authToken && (
                 <button
