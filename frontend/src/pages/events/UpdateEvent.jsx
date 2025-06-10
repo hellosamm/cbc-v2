@@ -28,24 +28,45 @@ const UpdateEvent = () => {
 
       setFormData(result.data);
 
-      const utcDate = new Date(result.data.start_time);
-      const localDate = new Date(
-        utcDate.getFullYear(),
-        utcDate.getMonth(),
-        utcDate.getDate()
-      );
+      setDate(formatDate(result.data.start_time));
 
-      setDate(localDate);
-
-      // setDate(result.data.start_time.split("T")[0]);
-      setStartTime(result.data.start_time);
-      setEndTime(result.data.end_time);
+      setStartTime(stringTo24(result.data.start_time));
+      setEndTime(stringTo24(result.data.end_time));
     };
     fetchEvent();
   }, [event.id]);
 
+  useEffect(() => {
+    if (startTime) {
+      devLog("start time changed:", startTime);
+      devLog("date", date);
+    }
+  }, [startTime, date]);
+
+  function formatDate(isoString) {
+    const date = new Date(isoString);
+    const year = date.getFullYear();
+    const month = String(date.getMonth() + 1).padStart(2, "0");
+    const day = String(date.getDate()).padStart(2, "0");
+
+    return `${year}-${month}-${day}`;
+  }
+
+  function stringTo24(isoString) {
+    const date = new Date(isoString);
+    const hours = date.getHours().toString().padStart(2, "0");
+    const minutes = date.getMinutes().toString().padStart(2, "0");
+    return `${hours}:${minutes}`;
+  }
+
   const handleSubmit = async (e) => {
     e.preventDefault();
+
+    const combined = `${date} ${startTime}`;
+    console.log("combined:", combined);
+    const d = new Date(combined);
+    console.log("new Date:", d);
+
     //make api call, update the currentUserData with the formData
     // return the updated data to check that it was successful
     const formattedData = new FormData();
@@ -73,7 +94,7 @@ const UpdateEvent = () => {
     );
 
     devLog("result", result);
-    // console.log("error", error);
+    devLog("error", error);
 
     if (result) {
       setFormData(result); // Updates UI in memory
@@ -145,10 +166,9 @@ const UpdateEvent = () => {
   const handleDateChange = (date) => {
     if (date) {
       const formattedDate = date.toISOString().split("T")[0];
-      console.log(formattedDate);
+      console.log("formatted date", formattedDate);
+      console.log("date", date);
       setDate(formattedDate);
-
-      setDate(date);
     }
   };
 

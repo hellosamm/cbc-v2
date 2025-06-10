@@ -100,8 +100,8 @@ export const checkUserRSVP = async (authToken, id) => {
 export const updateEvent = async (formData, authToken, id) => {
   const requestOptions = {
     method: "PATCH",
-    headers: { "Content-Type": "application/json", Authorization: authToken },
-    body: JSON.stringify(formData),
+    headers: { Authorization: authToken },
+    body: formData,
   };
 
   try {
