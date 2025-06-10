@@ -10,6 +10,7 @@ import devLog from "../../utilites/devLog";
 export default function UserCreatedEvents() {
   const [events, setEvents] = useState([]);
   const { currentUserData, authToken } = useAuth();
+  const [filter, setFilter] = useState("Upcoming");
 
   useEffect(() => {
     const fetchAllEvents = async () => {
@@ -44,9 +45,19 @@ export default function UserCreatedEvents() {
     (event) => event.user_id === currentUserData.id
   );
 
+  const now = new Date();
+  1;
+
+  const filteredEvents = userCreatedEvents.filter((event) => {
+    const eventDate = new Date(event.start_time);
+    if (filter === "Upcoming") return eventDate > now;
+    if (filter === "Past") return eventDate < now;
+    return true;
+  });
+
   // const userCreatedEvents.sort((a, b) => new Date(b.date) - new Date(a.date))
 
-  const displayEvents = userCreatedEvents.map((event) => (
+  const displayEvents = filteredEvents.map((event) => (
     <div id={event.id} key={event.id}>
       <Link to={`/${event.title.replace(/\s+/g, "-")}/event/${event.id}`}>
         <div className={styles.eventCard}>
@@ -87,9 +98,30 @@ export default function UserCreatedEvents() {
     <div className={styles.fullPage}>
       {/* <h1>events you created</h1> */}
       <div className={styles.selectorButtons}>
-        <button id="button-4">Upcoming Events</button>
-        <button id="button-4">Past Events</button>
-        <button id="button-4">All Events</button>
+        <button
+          onClick={() => setFilter("Upcoming")}
+          className={`${styles.buttonFour} ${
+            filter === "Upcoming" ? styles.activeButton : ""
+          }`}
+        >
+          Upcoming Events
+        </button>
+        <button
+          onClick={() => setFilter("Past")}
+          className={`${styles.buttonFour} ${
+            filter === "Past" ? styles.activeButton : ""
+          }`}
+        >
+          Past Events
+        </button>
+        <button
+          onClick={() => setFilter("All")}
+          className={`${styles.buttonFour} ${
+            filter === "All" ? styles.activeButton : ""
+          }`}
+        >
+          All Events
+        </button>
       </div>
 
       <div className={styles.allEvents}>
@@ -98,5 +130,3 @@ export default function UserCreatedEvents() {
     </div>
   );
 }
-
-//

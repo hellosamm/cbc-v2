@@ -9,6 +9,7 @@ import devLog from "../../utilites/devLog";
 const ViewUpcomingEvents = () => {
   const { authToken } = useAuth();
   const [userEvents, setUserEvents] = useState([]);
+  const [filter, setFilter] = useState("Upcoming");
 
   useEffect(() => {
     const fetchUserEvents = async () => {
@@ -28,7 +29,16 @@ const ViewUpcomingEvents = () => {
     fetchUserEvents();
   }, []);
 
-  const allEvents = userEvents.map((event) => (
+  const now = new Date();
+
+  const filteredEvents = userEvents.filter((event) => {
+    const eventDate = new Date(event.start_time);
+    if (filter === "Upcoming") return eventDate > now;
+    if (filter === "Past") return eventDate < now;
+    return true;
+  });
+
+  const allEvents = filteredEvents.map((event) => (
     <div id={event.id} key={event.id}>
       <div className={styles.eventCard}>
         <Link to={`/${event.title.replace(/\s+/g, "-")}/event/${event.id}`}>
@@ -76,13 +86,34 @@ const ViewUpcomingEvents = () => {
 
     <div className={styles.fullPage}>
       <div className={styles.selectorButtons}>
-        <button id="button-4">Upcoming Events</button>
-        <button id="button-4">Past Events</button>
-        <button id="button-4">All Events</button>
+        <button
+          onClick={() => setFilter("Upcoming")}
+          className={`${styles.buttonFour} ${
+            filter === "Upcoming" ? styles.activeButton : ""
+          }`}
+        >
+          Upcoming Events
+        </button>
+        <button
+          onClick={() => setFilter("Past")}
+          className={`${styles.buttonFour} ${
+            filter === "Past" ? styles.activeButton : ""
+          }`}
+        >
+          Past Events
+        </button>
+        <button
+          onClick={() => setFilter("All")}
+          className={`${styles.buttonFour} ${
+            filter === "All" ? styles.activeButton : ""
+          }`}
+        >
+          All Events
+        </button>
       </div>
       {/* <h1>your upcoming events</h1> */}
       <div className={styles.allEvents}>
-        {allEvents.length > 0 ? allEvents : noEvents}
+        {filteredEvents.length > 0 ? allEvents : noEvents}
       </div>
     </div>
   );

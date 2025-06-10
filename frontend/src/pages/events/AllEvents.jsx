@@ -122,7 +122,15 @@ const AllEvents = () => {
   const pastEvents = pastEventsList.map((event) => (
     <div className={styles.eventCard} id={event.id} key={event.id}>
       <Link to={`/${event.title.replace(/\s+/g, "-")}/event/${event.id}`}>
-        <div className={styles.imageContainer}></div>
+        {event.cover_photo_url ? (
+          <img
+            src={event.cover_photo_url}
+            alt={`${event.title} Cover`}
+            className={styles.imageContainer}
+          />
+        ) : (
+          <div className={styles.imageContainer}></div>
+        )}
         <div className={styles.individualEvent}>
           <div>
             <p className={styles.title}>{event.title}</p>
