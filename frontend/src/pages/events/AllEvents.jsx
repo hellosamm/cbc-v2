@@ -143,7 +143,6 @@ const AllEvents = () => {
             </p>
           </div>
           <p>{event.location}</p>
-          <p className={styles.attending}>{attendees[event.id]} attending</p>
         </div>
       </Link>
     </div>
