@@ -1,15 +1,13 @@
 import { useEffect, useState } from "react";
-import { useCookies } from "react-cookie";
 
 const useAuth = () => {
-  const [cookies] = useCookies(["authToken"]);
   const [loggedIn, setLoggedIn] = useState(false);
   const [currentUserData, setCurrentUserData] = useState(() => {
     return JSON.parse(localStorage.getItem("currentUserData")) || {};
   });
 
   useEffect(() => {
-    if (cookies.authToken) {
+    if (localStorage.authToken) {
       // set state to logged in
       const userData =
         JSON.parse(localStorage.getItem("currentUserData")) || {};
@@ -19,10 +17,10 @@ const useAuth = () => {
       setLoggedIn(false);
       setCurrentUserData({});
     }
-  }, [cookies.authToken]);
+  }, [localStorage.authToken]);
   return {
     loggedIn,
-    authToken: cookies.authToken,
+    authToken: localStorage.authToken,
     currentUserData,
     setCurrentUserData,
   };

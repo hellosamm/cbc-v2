@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Link, Outlet, useNavigate, useLocation } from "react-router-dom";
-import { useCookies } from "react-cookie";
+// import { useCookies } from "react-cookie";
 import { logoutApi } from "../apis/authentication";
 import { Menu, MenuButton, MenuItem, MenuItems } from "@headlessui/react";
 import useAuth from "../hooks/useAuth";
@@ -9,7 +9,7 @@ import devLog from "../utilites/devLog";
 
 const Navbar = () => {
   const { currentUserData } = useAuth();
-  const [cookies, setCookies, removeCookie] = useCookies([]);
+  // const [cookies, setCookies, removeCookie] = useCookies([]);
   const [loggedIn, setLoggedIn] = useState(false);
   const navigate = useNavigate();
   const location = useLocation();
@@ -19,15 +19,15 @@ const Navbar = () => {
     location.pathname === "/createEvent";
 
   useEffect(() => {
-    if (cookies.authToken) {
+    if (localStorage.authToken) {
       // set state to logged in
       setLoggedIn(true);
-      devLog("sign in state:", cookies.authToken);
+      devLog("sign in state:", localStorage.authToken);
     }
-  }, [cookies.authToken]);
+  }, [localStorage.authToken]);
 
   const handleLogout = async () => {
-    const [result, authToken, error] = await logoutApi(cookies.authToken);
+    const [result, authToken, error] = await logoutApi(localStorage.authToken);
     devLog("result: ", result);
     devLog("authToken: ", authToken);
     devLog("error: ", error);
@@ -43,7 +43,8 @@ const Navbar = () => {
     }
 
     if (result && !error) {
-      removeCookie("authToken");
+      localStorage.removeItem("authToken");
+      localStorage.removeItem("currentUserData");
       setLoggedIn(false);
       navigate("/");
     }

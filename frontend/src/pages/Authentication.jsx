@@ -118,7 +118,7 @@ const Authentication = ({ pageType }) => {
       // console.log("token received, ", authToken);
       localStorage.setItem("authToken", authToken);
 
-      setCookies("authToken", authToken);
+      // setCookies("authToken", authToken);
       // console.log("cookies:", cookies.authToken);
     } else if (authToken == null) {
       console.error("failed to retrieve token:", error);
