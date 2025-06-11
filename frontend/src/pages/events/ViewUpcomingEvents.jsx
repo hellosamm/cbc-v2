@@ -71,7 +71,7 @@ const ViewUpcomingEvents = () => {
 
   const noEvents = (
     <div>
-      <p>you don't have any upcoming events</p>
+      <p>no events found</p>
     </div>
   );
 

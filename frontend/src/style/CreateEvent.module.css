@@ -25,23 +25,13 @@
   align-items: center;
 }
 
-.leftHeader a {
-  margin-right: 1rem;
-  border-radius: 30px;
-}
-
-.leftHeader a:hover {
-  color: #002fa7;
-  font-weight: 600;
-}
-
 .backButton {
-  margin-bottom: 2rem;
+  margin-right: 2rem;
 }
 
 .backButton:hover {
   color: #002fa7;
-  font-weight: 600;
+  font-weight: 750;
 }
 
 .form {

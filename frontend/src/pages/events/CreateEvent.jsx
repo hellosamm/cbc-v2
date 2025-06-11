@@ -135,7 +135,9 @@ const AddEvent = () => {
       <div className={styles.fullPage}>
         <div className={styles.header}>
           <div className={styles.leftHeader}>
-            <Link to={"/Profile"}>back</Link>
+            <button className={styles.backButton} onClick={() => navigate(-1)}>
+              back
+            </button>
             <h1>Create Event</h1>
           </div>
           <button type="submit" id="button-2" onClick={handleSubmit}>

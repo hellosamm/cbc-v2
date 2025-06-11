@@ -90,7 +90,7 @@ export default function UserCreatedEvents() {
 
   const noEvents = (
     <div>
-      <p>you do not have any events</p>
+      <p>no events found</p>
     </div>
   );
 
