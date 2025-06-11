@@ -104,7 +104,10 @@ const Authentication = ({ pageType }) => {
     // console.log("result: ", result);
 
     if (error) {
-      // console.log("error: ", error);
+      setErrors((prev) => ({
+        ...prev,
+        login: error.message || "Login failed. Please try again.",
+      }));
     }
 
     if (result && !error) {
