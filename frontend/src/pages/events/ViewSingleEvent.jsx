@@ -121,6 +121,9 @@ const ViewSingleEvent = () => {
     </div>
   ));
 
+  const today = new Date();
+  const eventDate = new Date(event.start_time);
+
   // const allEvents = userEvents.map((event) => (
   //   <div id={event.id} key={event.id} className="flex ">
   //     <Link
@@ -175,7 +178,7 @@ const ViewSingleEvent = () => {
           <div className={styles.header}>
             <h1>{event.title}</h1>
             <div>
-              {rsvpStatus.creator ? (
+              {eventDate < today ? null : rsvpStatus.creator ? (
                 <button
                   onClick={() =>
                     navigate(
@@ -233,7 +236,7 @@ const ViewSingleEvent = () => {
               </div>
             </div>
             <div className={styles.rightColumn}>
-              {authToken ? (
+              {eventDate < today ? null : authToken ? (
                 <div className={styles.singleDetail}>
                   <div className={styles.sideBySide}>
                     <h2>Attending</h2>
