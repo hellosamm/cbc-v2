@@ -47,11 +47,11 @@ const Authentication = ({ pageType }) => {
     const newErrors = { ...initialErrorsState };
 
     if (!validateEmail(formData.email)) {
-      newErrors.email = "invalid email";
+      newErrors.email = "invalid login";
     }
 
     if (!validatePassword(formData.password)) {
-      newErrors.password = "invalid password";
+      newErrors.password = "invalid login";
     }
 
     setErrors(newErrors);
@@ -168,7 +168,6 @@ const Authentication = ({ pageType }) => {
               onChange={handleInputChange}
               className={styles.inputField}
             />
-            {errors.email && <p className={styles.error}>{errors.email}</p>}
           </div>
           <div className={styles.inputBlock}>
             {/* <p>Password</p> */}
@@ -183,6 +182,7 @@ const Authentication = ({ pageType }) => {
             {errors.password && (
               <p className={styles.error}>{errors.password}</p>
             )}
+            {errors.email && <p className={styles.error}>{errors.email}</p>}
             {errors.login && <p className={styles.error}>{errors.login}</p>}
           </div>
           <div>
