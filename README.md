@@ -1,8 +1,7 @@
 # Cookbook Club App (in development)
 > https://cbc-v2.onrender.com
 
-7/7/25
-DB currently down, working on moving the DB to new host.
+> ⚠️ **Note (7/16/25):** After switching to a new database host, some authentication issues are being investigated.
 
 ## Tech Stack:
 Backend: Rails API\
