@@ -1,7 +1,9 @@
 # Cookbook Club App (in development)
 > https://cbc-v2.onrender.com
 
-> ⚠️ **Note (7/16/25):** After switching to a new database host, some authentication issues are being investigated.
+> ⚠️ **Note** This project uses a database that may go to sleep when idle. If the app has been inactive for a while, the first request may take 15–30 seconds as the database "wakes up." After that, performance should return to normal.
+>
+> (7/16/25) After switching to a new database host, some authentication issues are being investigated.
 
 ## Tech Stack:
 Backend: Rails API\
