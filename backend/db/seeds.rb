@@ -8,11 +8,6 @@
 #     MovieGenre.find_or_create_by!(name: genre_name)
 #   end
 
-Event.destroy_all
-User.destroy_all
-
-
-ActiveRecord::Base.transaction do
 users = User.create!([
   {email: "test1@test.com", password: "123456"},
   {email: "test2@test.com", password: "123456"},
@@ -85,4 +80,3 @@ events[4].cover_photo.attach(
 )
 
 events.each(&:reload)
-end
