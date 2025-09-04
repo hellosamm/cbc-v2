@@ -1,6 +1,10 @@
 # Cookbook Club App (in development)
 > https://cbc-v2.onrender.com
 
+> ⚠️ **Note** This project uses a database that may go to sleep when idle. If the app has been inactive for a while, the first request may take 15–30 seconds as the database "wakes up." After that, performance should return to normal.
+>
+> (7/16/25) After switching to a new database host, some authentication issues are being investigated.
+
 ## Tech Stack:
 Backend: Rails API\
 Frontend: React\
@@ -40,8 +44,18 @@ npm start
 4. Open in Browser
 Visit http://localhost:3000 for the Rails API and http://localhost:5173 (or appropriate React port) for the frontend.
 
-## Images
+## Version 2
+Current version with updated features and design.
+<img width="1173" height="1454" alt="Image" src="https://github.com/user-attachments/assets/4113b7b0-b786-4a0f-aac9-2b3146be74bc" />
+<img width="1170" height="695" alt="Image" src="https://github.com/user-attachments/assets/8778ec27-dd27-4aa2-93ae-a4ceb6f47527" />
+<img width="1174" height="1455" alt="Image" src="https://github.com/user-attachments/assets/302dd737-5a07-4c47-8827-c3b43b4a0a37" />
+<img width="1171" height="999" alt="Image" src="https://github.com/user-attachments/assets/b0e02917-ee12-4157-bd7f-42b14a97c0e0" />
+<img width="1487" height="1061" alt="Image" src="https://github.com/user-attachments/assets/17c0c0d5-c9da-4379-b55f-ce76a291f459" />
+<img width="1494" height="1046" alt="Image" src="https://github.com/user-attachments/assets/fa689ac0-6a43-4479-9fab-bd0d6d068331" />
 
+
+## Version 1
+The original version of the product
 <img width="1413" alt="Image" src="https://github.com/user-attachments/assets/62cb41f3-0f86-4665-999c-389bf7d23161" />
 
 
